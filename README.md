@@ -20,7 +20,7 @@ Usage: `[options] {-i input_path} ... {-o output_path}`
 | <nobr>--no-color</nobr>, <nobr>--no-colour</nobr> | Removes all colour from any outputs |
 | <nobr>--raw</nobr> | Outputs the raw packaged program to the console |
 | -v, <nobr>--verbose</nobr> | Gives a verbose output of what is currently occuring |
-| <nobr>--verion</nobr> | Prints out the version number, release number, and compilation time |
+| <nobr>--version</nobr> | Prints out the version number, release number, and compilation time |
 
 <br>
 
