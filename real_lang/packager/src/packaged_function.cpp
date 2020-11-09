@@ -2,9 +2,9 @@
  * @file packaged_function.cpp
  * @author Bradley Marshall (bradley499)
  * @version 0.1
- * @date 2020-11-06
+ * @date 2020-11-09
  * 
- * @copyright Copyright (c) 2020
+ * @copyright Copyright (c) 2020 - Bradley Marshall
  * 
  */
 

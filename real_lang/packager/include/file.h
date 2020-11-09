@@ -2,9 +2,9 @@
  * @file file.h
  * @author Bradley Marshall (bradley499)
  * @version 0.1
- * @date 2020-11-06
+ * @date 2020-11-09
  * 
- * @copyright Copyright (c) 2020
+ * @copyright Copyright (c) 2020 - Bradley Marshall
  * 
  */
 
@@ -29,7 +29,6 @@ public:
 	 * @param file_mode the modes of operation on the file
 	 * @param writing if the file is to be writen to
 	 */
-
 	file(char* filename, std::ios_base::openmode file_mode, bool writing);
 	
 	/**
