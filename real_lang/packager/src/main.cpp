@@ -2,7 +2,7 @@
  * @file main.cpp
  * @author Bradley Marshall (bradley499) 
  * @version 0.1
- * @date 2020-11-06
+ * @date 2020-11-09
  * 
  * @copyright Copyright (c) 2020 - Bradley Marshall
  * 
@@ -38,6 +38,7 @@ bool is_verbose = false;
  */
 unsigned char generate(bool verbose, char * input_file_path, char * output_file_path, bool raw)
 {
+	// Verifying the validity of the provided parameters, and existence of files/directories
 	if (get_char_size(input_file_path) == 0)
 		return error("A source file needs to be provided!",-1,false);
 	if (get_char_size(output_file_path) == 0 && !raw)
@@ -56,7 +57,6 @@ unsigned char generate(bool verbose, char * input_file_path, char * output_file_
 	unsigned int input_file = file_operations->open(input_file_path,std::ofstream::out,false,false);
 	if (verbose)
 		std::cout<<"\u001b[1m\u001b[4mPARSING:\u001b[0m";
-	//char program[] = "__start:\n	glbl test 16\n	loop\n	set 1\n	loop\n		inc rtv1\n		break rtv1 4\n	loopend\n	glbl test\n	inc rtv1\n	glbl test rtv1\n	break rtv1 300\n	loopend";
 	if (verbose)
 		std::cout<<std::endl<<"Generating program structure...";
 
@@ -70,6 +70,7 @@ unsigned char generate(bool verbose, char * input_file_path, char * output_file_
 	unsigned long long int line_iteration = 0;
 	bool is_function[2] = {false,false};
 	bool is_end = false;
+	// Reading of the provided file
 	while (position <= program_length)
 	{
 		char character;
@@ -247,6 +248,7 @@ unsigned char generate(bool verbose, char * input_file_path, char * output_file_
 	}
 	if (function_operations.size() == 0)
 	{
+		// An invalid input file provided
 		if (verbose)
 			std::cout<<operation_conclusion(" failed")<<std::endl;
 		delete file_operations;
@@ -262,6 +264,7 @@ unsigned char generate(bool verbose, char * input_file_path, char * output_file_
 	std::vector<const char*> real_values = {"0"};
 	std::vector<const char*> glbl_variables;
 	std::vector<const char*> function_names = {"__start"};
+	// Reading the sytax of the provided file
 	for (unsigned long long int i = 0; i < function_operations.size(); ++i)
 	{
 		const char* function_name = function_operations.at(i)->name();
@@ -2826,7 +2829,7 @@ unsigned char generate(bool verbose, char * input_file_path, char * output_file_
 			std::cout<<operation_conclusion(" failed - too busy");
 		return error("Service is very busy at the moment... Please try again later...",-1,verbose);
 	}
-	unsigned int tmp_file = file_operations->open(tmp_path, std::ofstream::out | std::ofstream::app | std::ofstream::binary, true, true);
+	unsigned int tmp_file = file_operations->open(tmp_path, std::ofstream::out | std::ofstream::app | std::ofstream::binary, true, true); // Create temporary file
 	if (verbose)
 	{
 		std::cout<<operation_conclusion(" done");
@@ -2969,6 +2972,7 @@ unsigned char generate(bool verbose, char * input_file_path, char * output_file_
 						if (length_verify)
 							memset(hex_verify, 0, sizeof(hex_verify));
 					}
+					// Checks for for the delimiters do not have any duplicates in the output
 					if (segment_function_count != 0 || segment_parameter_count != 0 || segment_operation_count != 0 || segment_operation_sub_count != 0 || segment_real_values != 0 || segment_decimal_count != 0 || segment_negative_count != 0)
 					{
 						total_segment_function_count = 0;
@@ -3053,6 +3057,7 @@ unsigned char generate(bool verbose, char * input_file_path, char * output_file_
 						}
 						if (valid && parse_offest == (default_segmentation_size - 2))
 						{
+							// Valid build string with delimiters
 							if (verbose)
 								std::cout<<operation_conclusion(" done");
 							char *delimiter_size = new char[8];
@@ -3188,7 +3193,7 @@ int main(int argc, char *argv[])
 	{
 		if (strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"--help") == 0)
 		{
-			std::cout<<lan_intro<<std::endl<<"Usage: [options] {-i input_path} ... {-o output_path}"<<std::endl<<"Packages the Real language into a portable interpretive redistributable package"<<std::endl<<std::endl<<"List of options:"<<std::endl<<"  -i, --input <file>       Expects the Real language input file path to be"<<std::endl<<"                           subsequently appended after this argument"<<std::endl<<"  --no-color, --no-colour  Removes all colour from any outputs"<<std::endl<<"  -o, --output <file>      Expects the file path of the package output file"<<std::endl<<"                           to be subsequently appended after this statment"<<std::endl<<"  --raw                    Outputs the raw packaged program to the console"<<std::endl<<"  -v, --verbose            Gives a verbose output of what is currently"<<std::endl<<"                           occuring"<<std::endl<<"  --version                 Prints out the version number, release number, and"<<std::endl<<"                           compilation time"<<std::endl;
+			std::cout<<lan_intro<<std::endl<<"Usage: [options] {-i input_path} ... {-o output_path}"<<std::endl<<"Packages the Real language into a portable interpretive redistributable package"<<std::endl<<std::endl<<"List of options:"<<std::endl<<"  -i, --input <file>       Expects the Real language input file path to be"<<std::endl<<"                           subsequently appended after this argument"<<std::endl<<"  --no-color, --no-colour  Removes all colour from any outputs"<<std::endl<<"  -o, --output <file>      Expects the file path of the package output file"<<std::endl<<"                           to be subsequently appended after this statment"<<std::endl<<"  --raw                    Outputs the raw packaged program to the console"<<std::endl<<"  -v, --verbose            Gives a verbose output of what is currently"<<std::endl<<"                           occuring"<<std::endl<<"  --version                Prints out the version number, release number, and"<<std::endl<<"                           compilation time"<<std::endl;
 			return 0;
 		}
 		else if (strcmp(argv[i],"-i") == 0 || strcmp(argv[i],"--input") == 0)
