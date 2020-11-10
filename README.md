@@ -6,7 +6,10 @@ The Real language program is designed for quick relation, logical operations, to
 Everything is **Real**, meaning that the only data type to store any values in is a floating-point/real number.
 
 ## Getting started
-You can build the packager of the Real language in by making the program in the `real_lang/packager` directory. The program can be built by using the standard 'GNU make' program, and can be simply done by using the command `make`.
+### Building the packager and interpreter
+You can build the packager of the Real language in by making the program in the `real_lang/packager` directory. The program can be built by using the standard 'GNU make' program, and can be simply done by using the command `make`. Once that is compiled, you will need to build the interpreter in order to read the packaged files; which can be done the same was as the packager, but in the `real_lang/interpreter` directory instead.
+### Learn to program in Real
+To make a program in the Real language, you will need to take a look at the syntax, to first understand how to write in the Real language. To learn the syntax of the Real language, take a look at the [language reference manual](SYNTAX.md).
 
 ## How to use
 ### Packager
@@ -34,4 +37,4 @@ Usage: `[options] {-i input_path} ...`
 | <nobr>--version</nobr> | Prints out the version number, release number, and compilation time |
 <br>
 
-###### Last updated: 09/11/2020 - Bradley Marshall
+###### Last updated: 10/11/2020 - Bradley Marshall
